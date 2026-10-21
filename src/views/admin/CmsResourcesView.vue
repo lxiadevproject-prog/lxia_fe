@@ -785,13 +785,17 @@ onMounted(async () => {
   margin-bottom: 1.25rem;
 }
 
-.modal-form { display: flex; flex-direction: column; gap: 1.15rem; }
-.form-row { display: flex; gap: 1rem; }
-.flex-1 { flex: 1; }
-.form-group { display: flex; flex-direction: column; gap: 0.35rem; }
+.modal-form { display: flex; flex-direction: column; gap: 1.15rem; width: 100%; box-sizing: border-box; }
+.form-row { display: flex; gap: 1rem; width: 100%; box-sizing: border-box; }
+.flex-1 { flex: 1; min-width: 0; }
+.form-group { display: flex; flex-direction: column; gap: 0.35rem; min-width: 0; }
 .form-label { font-size: 0.84rem; font-weight: 600; color: #334155; }
 
 .form-input, .form-select, .form-textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
   padding: 0.7rem 0.9rem;
   border: 1px solid #cbd5e1;
   border-radius: 10px;
@@ -799,6 +803,12 @@ onMounted(async () => {
   outline: none;
   background: #f8fafc;
   transition: all 0.2s;
+}
+
+.form-select {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
@@ -811,6 +821,15 @@ onMounted(async () => {
 .form-group-checkbox { padding: 0.25rem 0; }
 .checkbox-container { display: flex; align-items: center; gap: 0.65rem; cursor: pointer; }
 .checkbox-label { font-size: 0.88rem; color: #334155; }
+
+@media (max-width: 520px) {
+  .modal-card {
+    padding: 1.5rem;
+  }
+  .form-row {
+    flex-direction: column;
+  }
+}
 
 .modal-footer {
   display: flex;
